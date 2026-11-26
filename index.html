@@ -31,6 +31,40 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
+    /* svc tags */
+  .svc-tags{
+    display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;
+    padding-top:12px;border-top:1px dashed var(--border);
+  }
+  .svc-tags span{
+    font-family:var(--mono);font-size:.68rem;
+    padding:3px 8px;border-radius:6px;
+    background:rgba(255,255,255,.04);color:var(--muted);
+    border:1px solid var(--border);
+  }
+  .svc-tags span.azure{color:#4f9fe0;border-color:rgba(0,120,212,.4);background:rgba(0,120,212,.08)}
+  .svc-tags span.databricks{color:#ff6b5a;border-color:rgba(255,54,33,.4);background:rgba(255,54,33,.06)}
+
+  /* cloud sub-blocks */
+  .svc-cloud{grid-column:span 2}
+  .cloud-block{margin-top:14px}
+  .cloud-block + .cloud-block{border-top:1px dashed var(--border);padding-top:12px}
+  .cloud-label{
+    font-family:var(--mono);font-size:.72rem;font-weight:700;
+    letter-spacing:.1em;margin-bottom:6px;
+  }
+  .cloud-label.aws{color:#ff9900}
+  .cloud-label.azure{color:#4f9fe0}
+  .cloud-label.gcp{color:#4285f4}
+
+  @media(max-width:1024px){
+    .svc-grid{grid-template-columns:1fr 1fr}
+    .svc-cloud{grid-column:span 2}
+  }
+  @media(max-width:600px){
+    .svc-grid{grid-template-columns:1fr}
+    .svc-cloud{grid-column:span 1}
+  }
   body{
     font-family:var(--font);
     background:var(--bg);
@@ -461,14 +495,22 @@
           <h3>Data Engineer / QA Data Engineer</h3>
           <div class="company">Bank Rakyat Indonesia (BRI)</div>
           <ul>
-            <li>Validate large-scale banking datasets in Hive, Impala, and enterprise DWH — profiling, reconciliation, aggregation checks, daily quality monitoring.</li>
-            <li>Support <strong>MDM</strong> golden-record pipelines: match, merge, unmerge, and downstream sync.</li>
-            <li>Test <strong>Kafka</strong> real-time pipelines: schemas, topic config, DLQ handling, CDC event-driven processing.</li>
-            <li>Built reusable SQL validation patterns for cross-layer reconciliation across 20+ enterprise pipelines.</li>
+            <li><strong>Data Warehouse &amp; Big Data:</strong> Worked with Hive, Impala, and enterprise data warehouse environments to validate large-scale banking datasets. Built SQL queries for profiling, reconciliation, row-count comparison, aggregation checks, and daily data quality monitoring across source and target tables.</li>
+            <li><strong>MDM &amp; Customer Data:</strong> Supported Master Data Management (MDM) pipelines involving customer, CIF, demographic, and golden-record datasets. Investigated match, merge, unmerge, and synchronization scenarios to ensure data consistency across MDM and downstream systems.</li>
+            <li><strong>Kafka &amp; Real-Time Validation:</strong> Tested and validated Kafka-based pipelines and downstream consumers — message schemas, topic configurations, DLQ handling, and CDC/event-driven processing. Investigated discrepancies between Kafka messages and persisted database records across real-time flows.</li>
+            <li><strong>ETL &amp; Data Ingestion:</strong> Built and validated ingestion pipelines using <strong>Informatica</strong> (Developer/PowerCenter), <strong>SSIS</strong>, <strong>Talend</strong>, and <strong>Apache Airflow</strong> as orchestration platform — ensuring source data was correctly transformed and loaded into target stores.</li>
+            <li><strong>Data Reconciliation &amp; Issue Investigation:</strong> Developed reusable SQL validation patterns across layers — row counts, financial aggregates, key-level matching, and missing/duplicate record detection. Reduced discrepancy investigation time significantly through reusable patterns.</li>
+            <li><strong>Data Quality &amp; Pipeline Validation:</strong> Performed end-to-end data quality validation across 20+ enterprise banking pipelines — source-to-target reconciliation, completeness, accuracy, consistency, and timeliness for downstream ML and analytics use cases.</li>
+            <li><strong>Dashboard &amp; BI Validation:</strong> Validated <strong>Tableau</strong> and <strong>Dataiku</strong> dashboards against warehouse sources — verified metric definitions, aggregation logic, filter behavior, and refresh schedules to guarantee reporting accuracy for business stakeholders.</li>
+            <li><strong>Service &amp; Performance Testing:</strong> Conducted service-level and performance testing on data services and APIs — load behavior, response time, throughput, and stability under production-like traffic. Validated REST API contracts and downstream data consumption patterns.</li>
+            <li><strong>Machine Learning &amp; CML:</strong> Supported <strong>Dataiku</strong> CML (Collaborative Machine Learning) workflows — validated feature pipelines, model input datasets, and scoring outputs to ensure ML models consumed clean, consistent data.</li>
+            <li><strong>Databricks &amp; Lakehouse:</strong> Worked with <strong>Databricks</strong>-style lakehouse workflows (Spark, Delta-ready tables) for large-scale transformation and validation across bronze/silver/gold layers.</li>
           </ul>
           <div class="stack">
-            <span>SQL</span><span>Python</span><span>Informatica</span><span>Hive</span><span>Impala</span>
-            <span>Kafka</span><span>Avro</span><span>BigQuery</span><span>Airflow</span><span>Spark</span>
+            <span>SQL</span><span>Python</span><span>Informatica</span><span>SSIS</span><span>Talend</span>
+            <span>Airflow</span><span>Hive</span><span>Impala</span><span>Kafka</span><span>Avro</span>
+            <span>BigQuery</span><span>Spark</span><span>MDM</span><span>MySQL/MariaDB</span><span>TiDB</span>
+            <span>Tableau</span><span>Dataiku</span><span class="databricks">Databricks</span>
           </div>
         </div>
       </article>
@@ -479,13 +521,19 @@
           <h3>Data Engineer</h3>
           <div class="company">Indosat Ooredoo Hutchison (Contract)</div>
           <ul>
-            <li>Owned 30+ daily <strong>Airflow / Cloud Composer</strong> ingestion pipelines in BigQuery — 99%+ timeliness SLA.</li>
-            <li>Built real-time event processing with <strong>GCP Pub/Sub</strong>, GKE, and Cloud Run to trigger personalized campaigns in seconds.</li>
-            <li>Integrated subscriber behavioral data with CleverTap; built H-1 transaction tables for same-day marketing activation.</li>
+            <li><strong>Daily Ingestion at Scale:</strong> Owned <strong>30+ daily Airflow / Cloud Composer</strong> ingestion pipelines in BigQuery across subscriber, transaction, and fintech datasets — maintained <strong>&gt;99% timeliness SLA</strong> and led incident response.</li>
+            <li><strong>Real-Time Campaign Pipeline:</strong> Built end-to-end real-time campaign pipeline from <strong>Kafka → GCP Pub/Sub → GKE / Cloud Run</strong>, detecting low-quota subscriber events and triggering personalized campaigns within seconds at national scale.</li>
+            <li><strong>Event-Driven Processing:</strong> Designed Pub/Sub topic/subscription architecture, message schemas, and downstream consumers; integrated with GKE and Cloud Run services for low-latency event processing.</li>
+            <li><strong>MarTech Integration:</strong> Integrated subscriber behavioral data with <strong>CleverTap</strong>; built <strong>H-1 transaction tables</strong> for same-day marketing activation serving millions of subscribers.</li>
+            <li><strong>Telco Product DAGs:</strong> Developed Airflow DAGs for Telco Loan and Zurich Insurance products — multi-source transaction integration into BigQuery with H-1/H-2 refresh patterns.</li>
+            <li><strong>AI Application Deployment:</strong> Deployed <strong>Dockerized AI applications</strong> on GCE; improved operational monitoring across GKE, Cloud Run, Pub/Sub, and Composer.</li>
+            <li><strong>Cost Optimization:</strong> Optimized BigQuery and Composer cost through partitioning, clustering, query pruning, slot/concurrency tuning, and right-sizing Cloud Run / GKE workloads — reducing cloud spend while preserving SLA.</li>
+            <li><strong>Observability &amp; Reliability:</strong> Introduced monitoring and alerting across pipelines and services — dashboards, log-based alerts, and runbooks to shorten incident response and improve platform reliability.</li>
           </ul>
           <div class="stack">
-            <span>Python</span><span>SQL</span><span>Airflow</span><span>BigQuery</span><span>Pub/Sub</span>
-            <span>GKE</span><span>Cloud Run</span><span>Docker</span><span>Kubernetes</span>
+            <span>Python</span><span>SQL</span><span>Airflow</span><span>Cloud Composer</span><span>BigQuery</span>
+            <span>Kafka</span><span>Pub/Sub</span><span>GKE</span><span>Cloud Run</span><span>GCE</span>
+            <span>CleverTap</span><span>Docker</span><span>Kubernetes</span>
           </div>
         </div>
       </article>
@@ -493,15 +541,21 @@
       <article class="exp-item">
         <div class="exp-date">Mar 2025 — Oct 2025</div>
         <div class="exp-body">
-          <h3>Data Engineer</h3>
+          <h3>Data Engineer — Team Lead</h3>
           <div class="company">Markethac (Contract)</div>
           <ul>
-            <li>Maintained 30+ ingestion pipelines across IM3 &amp; Tri brands; 99%+ SLA with documented runbooks.</li>
-            <li>Engineered real-time campaign system on Pub/Sub, GKE, Cloud Run at national scale.</li>
-            <li>Deployed and maintained Dockerized AI applications on GCE; added monitoring &amp; observability.</li>
+            <li><strong>Pipeline Automation Leadership:</strong> Led a team focused on full automation of data pipelines — building scalable systems that support internal operations and enhance client satisfaction through reliable, efficient, and intelligent data workflows. Directed a team-wide transition to fully automated pipelines, eliminating repetitive manual processes and significantly increasing overall productivity.</li>
+            <li><strong>Brand &amp; Product Labeller System:</strong> Built a centralized automated system that labels products and brands across multiple marketing and e-commerce channels. Reduced dependency on Data Engineering and DQC teams and cut daily operational workloads by <strong>over 70%</strong>.</li>
+            <li><strong>Client-Specific Category Pipelines:</strong> Developed pipelines that automatically adapt to each client's or prospective client's specific category — enabling dynamic data integration with minimal engineering effort.</li>
+            <li><strong>Real-Time Ingestion Monitoring:</strong> Engineered a system to automatically monitor all incoming data ingestion processes. The system triggers alerts on every change, enabling immediate response and ensuring data accuracy.</li>
+            <li><strong>Client Data Operations &amp; Business Alignment:</strong> Oversaw daily data operations and ensured all client-facing data remains consistent, relevant, and aligned with their business needs — ensuring top-tier client satisfaction.</li>
+            <li><strong>ClickHouse CDC &amp; Cost Optimization:</strong> Designed and deployed a <strong>Change Data Capture (CDC)</strong> system using <strong>ClickHouse</strong>, replacing high-cost analytics in BigQuery. This migration reduced data storage costs by up to <strong>1.6 TB per table per day</strong>, significantly lowering clients' daily operational expenses.</li>
+            <li><strong>Pipeline Maintenance at Scale:</strong> Maintained 30+ ingestion pipelines across IM3 &amp; Tri brands with 99%+ SLA and documented runbooks; engineered real-time campaign system on Pub/Sub, GKE, and Cloud Run at national scale.</li>
+            <li><strong>AI Application Deployment:</strong> Deployed and maintained Dockerized AI applications on GCE; added monitoring and observability across pipeline and application layers.</li>
           </ul>
           <div class="stack">
-            <span>Python</span><span>Airflow</span><span>ClickHouse</span><span>BigQuery</span><span>Looker</span><span>SQL</span>
+            <span>Python</span><span>Airflow</span><span>ClickHouse</span><span>CDC</span><span>BigQuery</span>
+            <span>Pub/Sub</span><span>GKE</span><span>Cloud Run</span><span>GCE</span><span>Looker</span><span>SQL</span>
           </div>
         </div>
       </article>
@@ -571,24 +625,6 @@
           </div>
         </div>
       </article>
-
-      <article class="exp-item">
-        <div class="exp-date">Oct 2023 — Present<br />Oct 2022 — Present</div>
-        <div class="exp-body">
-          <h3>Teaching &amp; Community</h3>
-          <div class="company">Binus Center Bandung · AIDI · PyCon ID · TEDx Dago</div>
-          <ul>
-            <li>Data Science Instructor (Python, SQL, ML, Tableau, Power BI) — Binus Center Bandung.</li>
-            <li>Main Speaker, PyCon ID 2023 — "Unraveling The Hashtag Enigma: Digital Forensics meets Predictive Analysis for Election Hashtags".</li>
-            <li>Selected as one of 100 Bandung's Finest Youth (Technology) — TEDx Dago 2023.</li>
-            <li>Member, Asosiasi Ilmuwan Data Indonesia (AIDI).</li>
-          </ul>
-          <div class="stack">
-            <span>Teaching</span><span>Public Speaking</span><span>Mentorship</span><span>Data Science</span>
-          </div>
-        </div>
-      </article>
-
     </div>
   </div>
 </section>
@@ -601,12 +637,92 @@
     <p class="section-sub">Six focus areas, tuned for production realities.</p>
 
     <div class="svc-grid">
-      <div class="svc"><div class="ico">🖥️</div><h3>Data Warehouse &amp; Mart</h3><p>Architecture, modelling, and maintenance across BigQuery, Redshift, ClickHouse, Hive, Impala.</p></div>
-      <div class="svc"><div class="ico">☁️</div><h3>Cloud Platforms</h3><p>Azure (DevOps, AD, hybrid), GCP, AWS — end-to-end delivery on managed cloud data services.</p></div>
-      <div class="svc"><div class="ico">🔄</div><h3>Real-Time &amp; Streaming</h3><p>Kafka, Pub/Sub, CDC — schema management, DLQ handling, downstream validation at scale.</p></div>
-      <div class="svc"><div class="ico">⚙️</div><h3>Pipeline Engineering</h3><p>Airflow, DMS, Glue, Informatica, Talend — resilient ETL/ELT with SLAs and observability.</p></div>
-      <div class="svc"><div class="ico">📊</div><h3>BI &amp; Data Storytelling</h3><p>Power BI, Tableau, Looker — turning messy data into decision-ready dashboards.</p></div>
-      <div class="svc"><div class="ico">🧠</div><h3>ML Infrastructure</h3><p>Databricks-style lakehouse, Spark, model-serving on Dockerized AI apps, ML-ready data.</p></div>
+      <div class="svc">
+        <div class="ico">🏢</div>
+        <h3>Data Warehouse &amp; Lakehouse</h3>
+        <p>Architecture, modelling, and maintenance across <strong>Databricks</strong> (Delta Lake, bronze/silver/gold), BigQuery, Redshift, ClickHouse, Hive, Impala.</p>
+        <div class="svc-tags">
+          <span class="databricks">Databricks</span><span>Delta Lake</span><span>BigQuery</span><span>Redshift</span><span>ClickHouse</span><span>Hive</span><span>Impala</span>
+        </div>
+      </div>
+
+      <div class="svc svc-cloud">
+        <div class="ico">☁️</div>
+        <h3>Cloud Platforms — AWS · Azure · GCP</h3>
+        <p>End-to-end delivery on managed cloud data services across all three major clouds, including hybrid and cross-cloud integration.</p>
+        <div class="cloud-block">
+          <div class="cloud-label aws">AWS</div>
+          <div class="svc-tags">
+            <span>S3</span><span>Redshift</span><span>Glue</span><span>DMS</span><span>Lambda</span><span>API Gateway</span><span>EC2</span><span>EMR</span><span>Athena</span><span>Kinesis</span>
+          </div>
+        </div>
+        <div class="cloud-block">
+          <div class="cloud-label azure">Azure</div>
+          <div class="svc-tags">
+            <span class="azure">Azure DevOps</span><span class="azure">Azure AD</span><span class="azure">Azure Data Factory</span><span class="azure">Azure Synapse</span><span class="azure">Azure Blob Storage</span><span class="azure">Azure Databricks</span><span class="azure">Azure Functions</span>
+          </div>
+        </div>
+        <div class="cloud-block">
+          <div class="cloud-label gcp">GCP</div>
+          <div class="svc-tags">
+            <span>BigQuery</span><span>Cloud Composer</span><span>Pub/Sub</span><span>GKE</span><span>Cloud Run</span><span>GCE</span><span>Dataflow</span><span>Cloud Storage</span><span>Dataproc</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc">
+        <div class="ico">🔄</div>
+        <h3>Real-Time &amp; Streaming</h3>
+        <p>Kafka, Pub/Sub, CDC — event-driven architecture with schema management, DLQ handling, and downstream validation at national scale.</p>
+        <div class="svc-tags">
+          <span>Kafka</span><span>Pub/Sub</span><span>Kinesis</span><span>CDC</span><span>Avro</span><span>ClickHouse CDC</span>
+        </div>
+      </div>
+
+      <div class="svc">
+        <div class="ico">⚙️</div>
+        <h3>Pipeline Engineering</h3>
+        <p>Resilient ETL/ELT with SLAs and observability — orchestrated end-to-end from ingestion to activation.</p>
+        <div class="svc-tags">
+          <span>Airflow</span><span>Cloud Composer</span><span>Azure Data Factory</span><span>Informatica</span><span>SSIS</span><span>Talend</span><span>AWS DMS</span><span>Glue</span>
+        </div>
+      </div>
+
+      <div class="svc">
+        <div class="ico">📊</div>
+        <h3>BI &amp; Data Storytelling</h3>
+        <p>Turning messy data into decision-ready dashboards — validated end-to-end against warehouse sources.</p>
+        <div class="svc-tags">
+          <span>Tableau</span><span>Power BI</span><span>Looker</span><span>Metabase</span><span>Dataiku</span>
+        </div>
+      </div>
+
+      <div class="svc">
+        <div class="ico">🧠</div>
+        <h3>Machine Learning &amp; CML</h3>
+        <p>ML-ready data platforms, feature pipeline validation, and model-serving on Dockerized AI apps.</p>
+        <div class="svc-tags">
+          <span>Dataiku CML</span><span class="databricks">Databricks ML</span><span>Spark ML</span><span>Scikit-learn</span><span>Vertex AI</span><span>Azure ML</span>
+        </div>
+      </div>
+
+      <div class="svc">
+        <div class="ico">🔍</div>
+        <h3>Data Quality &amp; Governance</h3>
+        <p>Profiling, reconciliation, MDM golden-record validation, and reusable SQL validation patterns across enterprise pipelines.</p>
+        <div class="svc-tags">
+          <span>MDM</span><span>SQL Validation</span><span>DQ Monitoring</span><span>Reconciliation</span><span>Data Profiling</span>
+        </div>
+      </div>
+
+      <div class="svc">
+        <div class="ico">🚀</div>
+        <h3>API &amp; Service Engineering</h3>
+        <p>Secure data-sharing APIs, service-level performance testing, and observability across data services.</p>
+        <div class="svc-tags">
+          <span>REST API</span><span>Lambda</span><span>API Gateway</span><span>Azure Functions</span><span>FastAPI</span><span>Perf Testing</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
