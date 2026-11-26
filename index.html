@@ -71,7 +71,51 @@ h2.section-title{
   margin-bottom:8px;
 }
 .section-sub{color:var(--muted);margin-bottom:56px;max-width:640px}
+/* ---------- SPEAKING ---------- */
+.speak-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.speak-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;
+  transition:border-color .2s, transform .2s;
+}
+.speak-card:hover{border-color:rgba(0,212,170,.4);transform:translateY(-4px)}
+.speak-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--bg-2)}
+.speak-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.speak-card:hover .speak-thumb img{transform:scale(1.04)}
+.speak-badge{
+  position:absolute;top:12px;left:12px;
+  font-family:var(--mono);font-size:.7rem;font-weight:700;
+  padding:4px 10px;border-radius:99px;
+  background:rgba(0,212,170,.15);color:var(--accent);
+  border:1px solid rgba(0,212,170,.4);
+  backdrop-filter:blur(6px);
+}
+.speak-badge-tedx{background:rgba(230,0,0,.15);color:#ff6b6b;border-color:rgba(230,0,0,.4)}
 
+/* TEDx placeholder (karena belum ada foto) */
+.speak-thumb-tedx{
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#1a0505 0%,#2a0a0a 50%,#0b0f19 100%);
+}
+.tedx-placeholder{text-align:center}
+.tedx-x{display:block;font-size:3rem;font-weight:900;color:#e60000;line-height:1;letter-spacing:-2px}
+.tedx-label{display:block;margin-top:6px;font-family:var(--mono);font-size:.85rem;font-weight:700;color:#fff;letter-spacing:.15em}
+
+.speak-body{padding:20px}
+.speak-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.speak-event{font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--accent);letter-spacing:.05em}
+.speak-year{font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.speak-body h3{font-size:1.08rem;margin-bottom:10px;line-height:1.3}
+.speak-desc{color:var(--muted);font-size:.88rem;margin-bottom:14px}
+.speak-tags{display:flex;flex-wrap:wrap;gap:6px}
+.speak-tags span{
+  font-family:var(--mono);font-size:.68rem;
+  padding:3px 8px;border-radius:6px;
+  background:var(--bg-2);color:var(--muted);
+  border:1px solid var(--border);
+}
+
+@media(max-width:820px){.speak-grid{grid-template-columns:1fr}}
 /* ---------- NAVBAR ---------- */
 header.nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
@@ -750,7 +794,58 @@ footer{
     </div>
   </div>
 </section>
+<!-- ================= SPEAKING ================= -->
+<section id="speaking" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="eyebrow">Speaking &amp; Community</div>
+    <h2 class="section-title">On stage, on record.</h2>
+    <p class="section-sub">Talks, teaching, and community work — sharing what I learn building data platforms.</p>
 
+    <div class="speak-grid">
+
+      <article class="speak-card">
+        <div class="speak-thumb">
+          <img src="img/pycon.jpeg" alt="PyCon ID 2023 — Main Speaker" loading="lazy" />
+          <span class="speak-badge">Main Speaker</span>
+        </div>
+        <div class="speak-body">
+          <div class="speak-meta">
+            <span class="speak-event">PyCon ID 2023</span>
+            <span class="speak-year">2023</span>
+          </div>
+          <h3>Unraveling The Hashtag Enigma</h3>
+          <p class="speak-desc">Digital Forensics meets Predictive Analysis for Election Hashtags — a talk on extracting signals from noisy social data and building predictive models around them.</p>
+          <div class="speak-tags">
+            <span>Digital Forensics</span><span>Predictive Analysis</span><span>Python</span><span>NLP</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="speak-card">
+        <div class="speak-thumb speak-thumb-tedx">
+          <div class="tedx-placeholder">
+            <span class="tedx-x">×</span>
+            <span class="tedx-label">TEDx Dago</span>
+          </div>
+          <img src="img/tedx.jpeg" alt="TEDx Dago — Selected Honoree" loading="lazy" />
+          <span class="speak-badge speak-badge-tedx">Selected Honoree</span>
+        </div>
+        <div class="speak-body">
+          <div class="speak-meta">
+            <span class="speak-event">TEDx Dago</span>
+            <span class="speak-year">2023</span>
+          </div>
+          <h3>100 Bandung's Finest Youth</h3>
+          <p class="speak-desc">Selected as one of 100 Bandung's Finest Youth in the Technology category — recognized for work in data engineering, ML, and community education.</p>
+          <div class="speak-tags">
+            <span>Technology</span><span>Recognition</span><span>Community</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
 <!-- ================= PROJECTS ================= -->
 <section id="projects" style="background:var(--bg-2)">
   <div class="wrap">
